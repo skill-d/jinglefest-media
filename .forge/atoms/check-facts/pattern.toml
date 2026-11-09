@@ -1,0 +1,11 @@
+[pattern]
+id = "check-facts"
+name = "Check facts"
+kind = "atom"
+deliverable = "Nothing kept: checks new copy for prices, phones, emails, links and banned words that are not in the README's Approved facts, and fails on any"
+
+[[stage]]
+id = "check-facts"
+kind = "script"
+run = "bash {pattern}/run.sh"
+timeout_s = 900
