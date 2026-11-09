@@ -1,0 +1,17 @@
+{
+  "name": "jinglefest-media",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "art": "node gen.mjs",
+    "render": "node render.mjs",
+    "shot": "node shot.mjs",
+    "kit": "node kit.mjs",
+    "guide": "node guide.mjs"
+  },
+  "dependencies": {
+    "opentype.js": "^2.0.0",
+    "playwright": "^1.64.1",
+    "qrcode": "^1.5.4"
+  }
+}

@@ -1,0 +1,8 @@
+Santa Red   #E5142B
+Marigold    #FFBF1F
+Hot Pink    #FF2E7E
+Pine        #0B5A43
+Mint        #38E0AC
+Night       #1A0D3A
+Cream       #FFF3D6
+Ink         #1B0F12

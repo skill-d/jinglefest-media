@@ -1,0 +1,49 @@
+<!doctype html>
+<!--
+  Starter for a new piece. Copy it next to this file (templates/<name>.html), set the size, swap the
+  illustration and the words, then render:  node shot.mjs templates/<name>.html 1080 1350 out/<name>.jpg
+  Paths are relative to this file. The illustration is a text-free part from art/ (or a cut-out such
+  as art/poster-kids.png). Every word, date, price, phone number, logo and QR code is added here, never
+  inside the AI image.
+-->
+<meta charset="utf-8">
+<style>
+  @font-face { font-family: Cinzel; src: url(../jinglefest-media-kit/03-fonts/CinzelDecorative-Black.ttf); }
+  @font-face { font-family: Anton; src: url(../jinglefest-media-kit/03-fonts/Anton-Regular.ttf); }
+  @font-face { font-family: Bricolage; font-weight: 200 800; src: url(../jinglefest-media-kit/03-fonts/BricolageGrotesque-Variable.ttf); }
+  :root {
+    --ink: #1b0f12; --cream: #fff3d6; --paper: #fffaf0; --red: #e5142b; --red-deep: #bd0a20;
+    --gold: #ffbf1f; --pink: #ff2e7e; --pine: #0b5a43; --mint: #38e0ac; --night: #1a0d3a;
+    --w: 1080px; --h: 1350px; /* feed. Story 1080x1920. A5 with bleed 1332x1868. */
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body { width: var(--w); height: var(--h); position: relative; overflow: hidden; font-family: Bricolage; color: var(--ink); background: var(--gold); }
+  .art { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .stack { position: absolute; left: 58px; right: 58px; top: 44px; display: flex; flex-direction: column; gap: 16px; align-items: flex-start; }
+  .logo { font-family: Cinzel; font-weight: 900; text-transform: uppercase; white-space: nowrap; rotate: -6deg; font-size: 56px; line-height: 1.1;
+    color: var(--cream); -webkit-text-stroke: .028em currentColor; paint-order: stroke fill;
+    text-shadow: .04em .04em 0 var(--ink), 0 0 .05em #fff, 0 0 .14em var(--gold), 0 0 .36em rgb(255 191 31/.85), 0 0 .8em rgb(255 191 31/.55); }
+  .logo i { font-style: normal; font-size: 1.5em; } .logo u { text-decoration: none; font-size: 1.3em; }
+  .kick { font-family: Anton; text-transform: uppercase; letter-spacing: .04em; background: var(--ink); color: var(--gold); font-size: 34px; padding: .14em .6em; border-radius: 9px; }
+  h1 { font-family: Anton; font-weight: 400; text-transform: uppercase; line-height: 1.06; font-size: 170px; color: var(--cream);
+    -webkit-text-stroke: 16px var(--ink); paint-order: stroke fill; filter: drop-shadow(8px 8px 0 var(--ink)); }
+  h1 em { font-style: normal; color: var(--gold); }
+  .coupon { position: relative; background: var(--paper); border: 4px solid var(--ink); border-radius: 22px; box-shadow: 9px 9px 0 var(--ink); padding: 18px 26px; font-size: 33px; font-weight: 600; line-height: 1.22; }
+  .coupon::before { content: ''; position: absolute; inset: 9px; border: 2px dashed rgb(27 15 18/.45); border-radius: 14px; }
+  .coupon b { font-weight: 800; }
+  .foot { position: absolute; left: 0; right: 0; bottom: 0; background: var(--ink); color: var(--cream); padding: 18px 40px; display: flex; justify-content: space-between; align-items: center; }
+  .foot .url { font-family: Anton; color: var(--gold); font-size: 38px; }
+  .foot .ph { font-weight: 700; font-size: 25px; } .foot .ph b { color: var(--gold); }
+  .qr { position: absolute; right: 30px; bottom: 100px; width: 190px; background: #fff; border: 4px solid var(--ink); border-radius: 14px; padding: 7px; box-shadow: 5px 5px 0 var(--ink); }
+  .qr img { display: block; width: 100%; }
+</style>
+
+<img class="art" src="../art/bakers-4x5.png" alt="">
+<div class="stack">
+  <span class="logo"><i>J</i>inglefes<u>T</u></span>
+  <span class="kick">Little Chefs Bake-Off</span>
+  <h1>Your<br><em>headline</em></h1>
+  <p class="coupon">One or two lines of detail. <b>14&nbsp;November, 4:30&nbsp;PM</b> at Bread&nbsp;&amp;&nbsp;Brew.</p>
+</div>
+<div class="qr"><img src="../jinglefest-media-kit/09-qr-codes/qr-bake-off.svg" alt=""></div>
+<div class="foot"><span class="url">thejinglefest.com/kids/baking</span><span class="ph"><b>Call</b> +91 80988 41307 / +91 9176040644</span></div>

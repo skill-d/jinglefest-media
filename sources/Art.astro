@@ -1,0 +1,57 @@
+---
+// Flyer-style sticker art, all drawn by hand so nothing needs licensing.
+interface Props { name: 'bell' | 'cookie' | 'ginger' | 'candy' | 'star' | 'gift' | 'whisk' | 'cupcake' | 'guitar' | 'mic'; size?: number; class?: string }
+const { name, size = 96, class: cls } = Astro.props;
+const s = { stroke: '#1b0f12', 'stroke-width': 5, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' } as const;
+---
+<svg class={cls} width={size} height={size} viewBox="0 0 120 120" aria-hidden="true" {...s}>
+  {name === 'bell' && <>
+    <path fill="#ffbf1f" d="M60 16c-20 0-30 16-31 36-1 16-5 26-15 36h92c-10-10-14-20-15-36-1-20-11-36-31-36Z" />
+    <path fill="#ffa400" d="M82 52c1 16 5 26 13 36H70c8-8 12-20 12-36Z" stroke="none" />
+    <circle cx="60" cy="13" r="7" fill="#e5142b" /><circle cx="60" cy="98" r="11" fill="#e5142b" />
+    <path fill="none" d="M40 42c2-8 6-12 12-14" stroke="#fff" />
+  </>}
+  {name === 'cookie' && <>
+    <path fill="#d98f45" d="M60 10c28 0 50 22 50 50s-22 50-50 50-50-22-50-50c0-6 1-12 3-17 5 3 13 1 15-6 7 3 16-3 15-11 0-4 8-16 17-16Z" />
+    <circle cx="46" cy="52" r="7" fill="#4a2312" /><circle cx="76" cy="40" r="6" fill="#4a2312" />
+    <circle cx="80" cy="76" r="8" fill="#4a2312" /><circle cx="48" cy="84" r="6" fill="#4a2312" />
+  </>}
+  {name === 'ginger' && <>
+    <path fill="#c9772f" d="M60 8c13 0 22 10 22 22 0 5-1 9-4 12l24 8c9 3 7 18-3 17l-17-3c-3 0-5 2-4 5l14 34c4 10-11 16-16 7L60 84l-16 26c-5 9-20 3-16-7l14-34c1-3-1-5-4-5l-17 3c-10 1-12-14-3-17l24-8c-3-3-4-7-4-12C38 18 47 8 60 8Z" />
+    <circle cx="52" cy="26" r="3.5" fill="#1b0f12" stroke="none" /><circle cx="68" cy="26" r="3.5" fill="#1b0f12" stroke="none" />
+    <path fill="none" stroke="#fff" stroke-width="4" d="M52 36c5 4 11 4 16 0M24 57l8-1M96 57l-8-1M60 52v1M60 64v1" />
+  </>}
+  {name === 'candy' && <>
+    <path fill="none" stroke="#1b0f12" stroke-width="24" d="M42 108V42a22 22 0 0 1 44 0v6" />
+    <path fill="none" stroke="#fff" stroke-width="15" stroke-linecap="butt" d="M42 108V42a22 22 0 0 1 44 0v6" />
+    <path fill="none" stroke="#e5142b" stroke-width="15" stroke-linecap="butt" stroke-dasharray="11 11" d="M42 108V42a22 22 0 0 1 44 0v6" />
+  </>}
+  {name === 'star' && <path fill="#ffbf1f" d="m60 8 15 34 37 4-28 25 8 37-32-19-32 19 8-37L8 46l37-4L60 8Z" />}
+  {name === 'gift' && <>
+    <rect x="16" y="50" width="88" height="60" rx="5" fill="#ff2e7e" /><rect x="8" y="34" width="104" height="22" rx="5" fill="#e5142b" />
+    <path fill="#ffbf1f" d="M50 34h20v76H50z" />
+    <path fill="#ffbf1f" d="M60 34C50 10 22 8 26 24c3 10 20 10 34 10Zm0 0c10-24 38-26 34-10-3 10-20 10-34 10Z" />
+  </>}
+  {name === 'whisk' && <>
+    <path fill="#c9772f" d="m76 76 30 30c4 4-3 11-7 7L69 83Z" />
+    <path fill="#fff" d="M72 80C50 80 12 40 14 22c2-14 18-10 32 2 18 16 32 40 26 56Z" />
+    <path fill="none" stroke-width="3.5" d="M72 80C56 66 34 40 26 18M72 80C60 58 54 40 42 24" />
+  </>}
+  {name === 'cupcake' && <>
+    <path fill="#38e0ac" d="M26 66h68l-9 44H35Z" /><path fill="none" stroke-width="3.5" d="m46 68 4 40M60 68v40M74 68l-4 40" />
+    <path fill="#fff" d="M20 66c-6-14 6-22 14-20-2-14 12-22 20-18 4-10 20-8 22 2 14-2 22 10 16 20 10 2 12 12 8 16Z" />
+    <circle cx="62" cy="16" r="9" fill="#e5142b" />
+  </>}
+  {name === 'guitar' && <>
+    <path fill="#c9772f" d="m70 34 12 12-52 52-12-12Z" transform="translate(-4 4)" stroke="none" />
+    <path fill="#ff2e7e" d="M40 62c8-2 12 2 14 8 6 0 12 4 10 12-3 12-16 12-20 22-4 8-16 10-26 0S6 80 14 76c10-4 10-16 22-20 2-1 4 2 4 6Z" />
+    <circle cx="35" cy="84" r="8" fill="#1b0f12" />
+    <path fill="none" stroke-width="7" d="m42 78 54-54" />
+    <path fill="#ffbf1f" d="m88 14 10-8 16 16-8 10-6 2-14-14Z" />
+  </>}
+  {name === 'mic' && <>
+    <path fill="#c9772f" d="m58 54 8 8-44 46c-5 5-14-3-9-9Z" />
+    <circle cx="76" cy="42" r="30" fill="#ffbf1f" />
+    <path fill="none" stroke-width="3.5" d="M58 22 96 60M76 12l30 30M50 40l36 36" />
+  </>}
+</svg>
