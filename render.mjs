@@ -1,7 +1,7 @@
 // Typesets the poster and social posts over the Gemini scenes.
 import { chromium } from 'playwright';
 import { readFileSync } from 'node:fs';
-import { posts, PHONES } from './posts.mjs';
+import { posts, bandPost, PHONES } from './posts.mjs';
 
 const root = new URL('./', import.meta.url).pathname;
 const K = `${root}jinglefest-media-kit/`;
@@ -57,7 +57,7 @@ const postHtml = (p, story) => {
   .offer p{font-family:Anton;font-size:${story ? 74 : 60}px;line-height:1.1}.offer s{font-size:.6em;opacity:.85}.offer b{font-weight:400;color:#fff}.offer span{display:block;font-size:${story ? 25 : 23}px;font-weight:800;white-space:nowrap}
   .tag{position:absolute;right:44px;top:${story ? 215 : 30}px}
   </style><img class=bg src="${art}">
-  <div class=stack>${LOGO}<div class=kr${story && p.burst ? ' style="flex-direction:column;align-items:flex-start"' : ''}><span class=kick>${p.kicker}</span><span class=spon>Made possible by <b>Bread &amp; Brew</b></span></div><h1>${p.head}</h1>
+  <div class=stack>${LOGO}<div class=kr${story && p.burst ? ' style="flex-direction:column;align-items:flex-start"' : ''}><span class=kick>${p.kicker}</span>${p.nosponsor ? '' : '<span class=spon>Made possible by <b>Bread &amp; Brew</b></span>'}</div><h1>${p.head}</h1>
   ${p.sub ? `<div class="coupon sub">${glue(p.sub)}</div>` : ''}
   ${p.cards ? `<div class=cards>${p.cards.map(([a, b]) => `<div class=coupon><b>${a}</b><span>${b}</span></div>`).join('')}</div>` : ''}
   ${story ? foot : ''}</div>${offer}${story ? '' : foot + qr}
@@ -167,6 +167,7 @@ const shot = async (html, w, h, scale, path, pdf) => {
 };
 if (only === 'a5') { await a5(); console.log('a5'); await b.close(); process.exit(0); }
 if (!only || only === 'poster') { await shot(posterHtml(), 1280, 1600, 2, `${K}07-poster/little-chefs-bake-off-poster.png`, `${K}07-poster/little-chefs-bake-off-poster.pdf`); console.log('poster'); }
+if (only === 'band') { console.log('band-battle feed', await shot(postHtml(bandPost, false), 1080, 1350, 1, `${K}08-socials/feed-4x5/band-battle-band.png`)); await b.close(); process.exit(0); }
 if (only !== 'poster') for (const p of posts) {
   if (only && String(p.day) !== only) continue;
   const n = `day-${String(p.day).padStart(2, '0')}-${p.date.replace(' ', '').toLowerCase()}-${p.scene}`;

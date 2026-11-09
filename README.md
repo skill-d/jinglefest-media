@@ -99,6 +99,7 @@ Put finished files in the right `jinglefest-media-kit/` folder (`07-poster`, `08
 | Bake-Off poster | `07-poster/little-chefs-bake-off-poster.{png,pdf}` | `bun render.mjs poster` |
 | Bake-Off A5 flyer | `07-poster/little-chefs-bake-off-a5{.png,-print.pdf,-print-with-bleed.pdf}` | `bun render.mjs a5`. RGB only, so check with the print shop if they need CMYK |
 | 10-day Bake-Off posts | `08-socials/feed-4x5/`, `story-9x16/`, `captions.md` | Words in `posts.mjs`. `bun render.mjs <day>`. Days 1–4 show the early bird price, which has ended |
+| Band Battle feed post | `08-socials/feed-4x5/band-battle-band.png` | 1080 × 1350, words in `bandPost` in `posts.mjs`. `bun render.mjs band` |
 | Starter template | `templates/starter.html` | Fonts, colours, logo, coupon, QR, footer |
 | Website icons | `10-website/favicon.svg`, `apple-touch-icon.png` (180 × 180) | Copies of the live site's icons |
 | Link previews | `10-website/share-images/og-{home,bakeoff,music,stalls,carnival,sponsors}.jpg` (1200 × 630), `bread-and-brew.jpg` | The pictures WhatsApp and Facebook show when a page is shared. The live copies are in the website repo's `public/img`: change them there too |
