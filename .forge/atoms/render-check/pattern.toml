@@ -1,0 +1,11 @@
+[pattern]
+id = "render-check"
+name = "Render check"
+kind = "atom"
+deliverable = "Nothing kept: renders templates/starter.html to a temp file and fails if any image did not load"
+
+[[stage]]
+id = "render-check"
+kind = "script"
+run = "bash {pattern}/run.sh"
+timeout_s = 900
