@@ -3,11 +3,25 @@
 Posters, flyers, pamphlets and social posts for Jinglefest (thejinglefest.com). This is a copy of `marketing/` from the website repo, set up to work on its own.
 
 ```bash
-bun install                                             # once: Playwright, qrcode, opentype.js
-node gen.mjs gemini <scene>                             # make or remake an illustration (or: grok)
-node render.mjs [poster|a5|<day>]                       # rebuild the Bake-Off poster, A5 flyer, posts
-node shot.mjs templates/<name>.html 1080 1350 out/<name>.jpg   # render any new piece
+bun gen.mjs gemini <scene>                                    # make or remake an illustration (or: grok)
+bun render.mjs [poster|a5|<day>]                              # rebuild the Bake-Off poster, A5 flyer, posts
+bun shot.mjs templates/<name>.html 1080 1350 out/<name>.jpg   # render any new piece
 ```
+
+## Setup (Claude: do this first on a new computer)
+
+Everything runs on **bun** alone. Node isn't needed. Most people won't have bun yet, so check and install it before anything else.
+
+1. **Check:** `bun --version`. If that prints a version, skip to step 3.
+2. **Install bun** (no admin rights needed):
+   - macOS or Linux: `curl -fsSL https://bun.sh/install | bash`
+   - Windows (PowerShell): `powershell -c "irm bun.sh/install.ps1 | iex"`
+
+   The installer puts bun in `~/.bun/bin` and adds it to the shell profile, but the current terminal won't see it yet. Open a new terminal, or run `export PATH="$HOME/.bun/bin:$PATH"` (macOS/Linux), then check `bun --version` again. If `curl` is missing on Linux, install it with the system package manager first. On a Mac where Homebrew is already set up, `brew install oven-sh/bun/bun` also works.
+3. **Install the packages:** in this folder, run `bun install`.
+4. **Install the browser that renders the pages:** `bunx playwright install chromium`. This is a one-time download of about 150 MB. Without it, every render fails with "Executable doesn't exist".
+5. **Check it all works:** `bun shot.mjs templates/starter.html 1080 1350 out/check.jpg`, then open `out/check.jpg`. It should show the starter post with the logo, the headline, the kids and a QR code.
+6. **Only for making new illustrations:** set `GEMINI_API_KEY` (from Google AI Studio) or `XAI_API_KEY` (from xAI) in the terminal, such as `export GEMINI_API_KEY=...`. Ask the owner for a key. Never write it into a file in this folder. You don't need a key to render pieces from existing art.
 
 ## Instructions for Claude
 
@@ -15,11 +29,11 @@ Follow these rules for every new file.
 
 ### 1. AI makes parts, never the finished piece
 
-- Use **Gemini** (`node gen.mjs gemini ...`, needs `GEMINI_API_KEY`) or **Grok** (`node gen.mjs grok ...`, needs `XAI_API_KEY`) **only for illustration parts**: a scene, a character group, an object or a background.
+- Use **Gemini** (`bun gen.mjs gemini ...`, needs `GEMINI_API_KEY`) or **Grok** (`bun gen.mjs grok ...`, needs `XAI_API_KEY`) **only for illustration parts**: a scene, a character group, an object or a background.
 - **Never ask Gemini (or Grok) for a whole poster, flyer or post.** Never ask it for text, logos, dates, prices, phone numbers, QR codes or layout. Image models misspell words and invent numbers.
 - Every prompt starts with `STYLE` from `art.mjs`, which already bans text and sets the palette. Add the new scene to `art` in `art.mjs` with a short name, then run `gen.mjs` with that name. Results land in `art/<name>-4x5.png` and `art/<name>-9x16.png` (set `ratios` for other shapes).
 - Say where the empty space goes ("keep the top 58% as plain sunburst"), so the words have somewhere to sit.
-- **Check every image before using it.** Open it and look for stray letters on signs, clothes, awnings and clock faces, borders, extra fingers, and skin tone (the brief asks for warm medium tan, not yellow or orange). `node scan-text.mjs` asks Gemini to look for stray lettering across `art/`. If anything's wrong, run it again. Never fix text in an image by asking the model to "remove" it.
+- **Check every image before using it.** Open it and look for stray letters on signs, clothes, awnings and clock faces, borders, extra fingers, and skin tone (the brief asks for warm medium tan, not yellow or orange). `bun scan-text.mjs` asks Gemini to look for stray lettering across `art/`. If anything's wrong, run it again. Never fix text in an image by asking the model to "remove" it.
 - To use characters at any size, cut them off their background (`cutout.mjs` shows how for the poster kids → `art/poster-kids.png`).
 - The Grok path hasn't been run against the live API yet. Check the first image it makes before running a batch. If xAI rejects the request, check the current model name and fields at docs.x.ai and fix `providers.grok` in `gen.mjs`.
 
@@ -28,7 +42,7 @@ Follow these rules for every new file.
 1. Copy `templates/starter.html` to `templates/<name>.html`. For a variant of an existing piece, extend the matching function in `render.mjs` instead (`posterHtml`, `a5Html`, `postHtml`).
 2. Set the page size (table below) and place the AI illustration as an `<img>`.
 3. Add everything else as real HTML and assets from this folder: the logo (CSS text in the brand font, or an SVG from `01-logo`), headline, details, stickers, the QR code SVG, footer, sponsor logo.
-4. Render it with `node shot.mjs` (or `render.mjs`), then **open the output and look at it**. Check that nothing touches or overlaps, that text fits, and that faces aren't covered.
+4. Render it with `bun shot.mjs` (or `render.mjs`), then **open the output and look at it**. Check that nothing touches or overlaps, that text fits, and that faces aren't covered.
 
 | Piece | HTML size (px) | Render |
 |---|---|---|
@@ -82,9 +96,9 @@ Put finished files in the right `jinglefest-media-kit/` folder (`07-poster`, `08
 | Layout guides | `06-templates/layout-guide-{feed,story}.png` | Text and safe zones |
 | Prompt guide for people | `06-templates/gemini-prompts.md` | For volunteers using the Gemini app |
 | QR codes | `09-qr-codes/qr-{website,bake-off,band-battle,stalls}.{svg,png}` | Use the SVG in HTML. Rebuilt by `kit.mjs` |
-| Bake-Off poster | `07-poster/little-chefs-bake-off-poster.{png,pdf}` | `node render.mjs poster` |
-| Bake-Off A5 flyer | `07-poster/little-chefs-bake-off-a5{.png,-print.pdf,-print-with-bleed.pdf}` | `node render.mjs a5`. RGB only, so check with the print shop if they need CMYK |
-| 10-day Bake-Off posts | `08-socials/feed-4x5/`, `story-9x16/`, `captions.md` | Words in `posts.mjs`. `node render.mjs <day>`. Days 1–4 show the early bird price, which has ended |
+| Bake-Off poster | `07-poster/little-chefs-bake-off-poster.{png,pdf}` | `bun render.mjs poster` |
+| Bake-Off A5 flyer | `07-poster/little-chefs-bake-off-a5{.png,-print.pdf,-print-with-bleed.pdf}` | `bun render.mjs a5`. RGB only, so check with the print shop if they need CMYK |
+| 10-day Bake-Off posts | `08-socials/feed-4x5/`, `story-9x16/`, `captions.md` | Words in `posts.mjs`. `bun render.mjs <day>`. Days 1–4 show the early bird price, which has ended |
 | Starter template | `templates/starter.html` | Fonts, colours, logo, coupon, QR, footer |
 
 ### Scripts

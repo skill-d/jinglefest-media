@@ -1,12 +1,12 @@
 // Renders any HTML page to an image or PDF, after its fonts and images have loaded.
-// Usage: node shot.mjs <page.html> <width> <height> <out.png|out.jpg|out.pdf> [scale]
+// Usage: bun shot.mjs <page.html> <width> <height> <out.png|out.jpg|out.pdf> [scale]
 //   width and height are CSS pixels. scale multiplies them (2 for a sharp poster, 3638/1332 for A5 at 600 dpi).
 //   A PDF comes out one page of exactly width x height.
 import { chromium } from 'playwright';
 import { resolve } from 'node:path';
 
 const [page, w, h, out, scale = '1'] = process.argv.slice(2);
-if (!page || !w || !h || !out) { console.log('Usage: node shot.mjs <page.html> <width> <height> <out> [scale]'); process.exit(1); }
+if (!page || !w || !h || !out) { console.log('Usage: bun shot.mjs <page.html> <width> <height> <out> [scale]'); process.exit(1); }
 const W = Number(w), H = Number(h);
 const b = await chromium.launch();
 const ctx = await b.newContext({ viewport: { width: W, height: H }, deviceScaleFactor: scale.split("/").map(Number).reduce((a, b) => a / b) });

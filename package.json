@@ -3,11 +3,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "art": "node gen.mjs",
-    "render": "node render.mjs",
-    "shot": "node shot.mjs",
-    "kit": "node kit.mjs",
-    "guide": "node guide.mjs"
+    "art": "bun gen.mjs",
+    "render": "bun render.mjs",
+    "shot": "bun shot.mjs",
+    "kit": "bun kit.mjs",
+    "guide": "bun guide.mjs"
   },
   "dependencies": {
     "opentype.js": "^2.0.0",

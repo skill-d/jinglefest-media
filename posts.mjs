@@ -1,4 +1,4 @@
-// The 10-day Bake-Off plan. Every word on the images comes from here. Edit, then run: node render.mjs
+// The 10-day Bake-Off plan. Every word on the images comes from here. Edit, then run: bun render.mjs
 export const PHONES = '+91 80988 41307 / +91 9176040644';
 const url = 'thejinglefest.com/kids/baking';
 const kicker = 'Little Chefs Bake-Off';

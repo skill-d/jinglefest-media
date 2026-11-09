@@ -1,6 +1,6 @@
 // Generates text-free illustration parts with Gemini or Grok. All wording is typeset afterwards in
 // render.mjs, because image models can't be trusted with dates and phone numbers.
-// Usage: node gen.mjs [gemini|grok] [name ...]
+// Usage: bun gen.mjs [gemini|grok] [name ...]
 //   gemini needs GEMINI_API_KEY (model: GEMINI_MODEL, default gemini-3.1-flash-image)
 //   grok   needs XAI_API_KEY    (model: GROK_MODEL, default grok-imagine-image)
 // With no names, makes only scenes that don't exist yet. With names, remakes those (prefix match).
