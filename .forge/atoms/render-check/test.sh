@@ -5,10 +5,10 @@ cd "$(git rev-parse --show-toplevel)" || exit 1
 check=.forge/atoms/render-check/check.sh
 tmp=$(mktemp -d); trap 'rm -rf "$tmp" templates/zz-tmp-*.html' EXIT
 
-# 1. Default run: starter passes, Band Battle is a second page covered, nothing fails.
+# 1. Default run: starter passes, every posts.mjs post is covered, nothing fails.
 out=$(bash "$check" 2>&1) || { echo "$out"; echo "FAIL: default run should pass"; exit 1; }
 grep -q 'ok: templates/starter.html' <<<"$out" || { echo "$out"; echo "FAIL: starter not covered"; exit 1; }
-grep -q 'ok: Band Battle post' <<<"$out" || { echo "$out"; echo "FAIL: Band Battle post not covered"; exit 1; }
+for p in bandPost carnivalPost; do grep -q "ok: posts.mjs $p" <<<"$out" || { echo "$out"; echo "FAIL: $p not covered"; exit 1; }; done
 
 # 2. A page with a missing image must fail and be named (single-page override).
 echo '<body><img src="nope-missing.png"></body>' > "$tmp/bad.html"

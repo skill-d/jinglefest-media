@@ -1,6 +1,6 @@
 #!/bin/bash
 # Renders each feed page at 1080x1350 into a temp dir; exits non-zero naming any page that failed or had an image that did not load.
-# Pages: every templates/*.html plus the Band Battle post. RENDER_CHECK_PAGE=<file> checks that one page only.
+# Pages: every templates/*.html plus every *Post export of posts.mjs (found by `render.mjs feed-html`, so new posts need no setup). RENDER_CHECK_PAGE=<file> checks that one page only.
 # Run from the repo root.
 set -uo pipefail
 t=$(mktemp -d) && trap 'rm -rf "$t"' EXIT
@@ -21,7 +21,10 @@ else
   for f in templates/*.html; do
     if is_feed "$f"; then check "$f" "$f"; else echo "skip: $f (not 1080x1350)"; fi
   done
-  if bun render.mjs band-html "$t/band-battle.html" && [ -s "$t/band-battle.html" ]; then check "Band Battle post (posts.mjs bandPost)" "$t/band-battle.html"; else echo "FAIL: Band Battle post page could not be built"; fail=1; fi
+  mkdir "$t/posts"
+  if names=$(bun render.mjs feed-html "$t/posts") && [ -n "$names" ]; then
+    for name in $names; do check "posts.mjs $name" "$t/posts/$name.html"; done
+  else echo "FAIL: posts.mjs pages could not be built"; fail=1; fi
 fi
 [ "$n" -gt 0 ] || { echo "FAIL: no pages were rendered"; fail=1; }
 exit "$fail"

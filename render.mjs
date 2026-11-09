@@ -152,9 +152,13 @@ const a5 = async () => {
   await ctx.close();
 };
 
-// `bun render.mjs band-html <out.html>` writes the Band Battle page's HTML and exits (used by the render-check atom).
-if (only === 'band-html') { (await import('node:fs')).writeFileSync(process.argv[3], postHtml(bandPost, false)); process.exit(0); }
-if (only === 'carnival-html') { (await import('node:fs')).writeFileSync(process.argv[3], postHtml(carnivalPost, false)); process.exit(0); }
+// `bun render.mjs feed-html <dir>` writes <dir>/<name>.html for every *Post export of posts.mjs, prints each name and exits (used by the render-check atom).
+if (only === 'feed-html') {
+  const fs = await import('node:fs'), all = await import('./posts.mjs');
+  const names = Object.keys(all).filter(k => /Post$/.test(k) && !Array.isArray(all[k]));
+  for (const k of names) { fs.writeFileSync(`${process.argv[3]}/${k}.html`, postHtml(all[k], false)); console.log(k); }
+  process.exit(0);
+}
 const b = await chromium.launch();
 const shot = async (html, w, h, scale, path, pdf) => {
   const ctx = await b.newContext({ viewport: { width: w, height: h }, deviceScaleFactor: scale });
