@@ -2,7 +2,7 @@
 id = "render-check"
 name = "Render check"
 kind = "atom"
-deliverable = "Nothing kept: renders templates/starter.html to a temp file and fails if any image did not load"
+deliverable = "Nothing kept: renders every feed-size templates/*.html and the Band Battle post at 1080x1350 into a temp dir, skips other sizes by name, and fails naming any page that did not render or had an image that did not load (RENDER_CHECK_PAGE=<file> checks one page)"
 
 [[stage]]
 id = "render-check"
