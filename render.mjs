@@ -152,6 +152,8 @@ const a5 = async () => {
   await ctx.close();
 };
 
+// `bun render.mjs band-html <out.html>` writes the Band Battle page's HTML and exits (used by the render-check atom).
+if (only === 'band-html') { (await import('node:fs')).writeFileSync(process.argv[3], postHtml(bandPost, false)); process.exit(0); }
 const b = await chromium.launch();
 const shot = async (html, w, h, scale, path, pdf) => {
   const ctx = await b.newContext({ viewport: { width: w, height: h }, deviceScaleFactor: scale });
