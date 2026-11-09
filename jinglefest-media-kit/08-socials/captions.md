@@ -52,3 +52,8 @@ Register: thejinglefest.com/kids/baking
 **Day 10, Sat 14 Nov: Children's Day**
 Happy Children's Day! The Little Chefs Bake-Off is on today at 4:30 PM at Bread & Brew. Good luck, little chefs!
 #Jinglefest #LittleChefsBakeOff #ChildrensDay
+
+**Band Battle: feed post** (`feed-4x5/band-battle-band.png`, 1080 × 1350)
+Band Battle is coming to Jinglefest! 5 bands of 2–5 members. Screening on 28 November, then the final at the Christmas Carnival on 6 December.
+Register: thejinglefest.com/music
+#Jinglefest #BandBattle #ChristmasCarnival #LiveMusic

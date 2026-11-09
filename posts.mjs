@@ -16,3 +16,6 @@ export const posts = [
   { day: 9, date: '13 Nov', scene: 'lastcall', kicker: 'Last call', head: 'Tomorrow!', sub: 'Little Chefs Bake-Off.<br><b>14 November, 4:30 PM</b> at Bread & Brew,<br>Thailavaram Bus Stop, GST Road, Potheri.', burst: 'Register now', url },
   { day: 10, date: '14 Nov', scene: 'today', kicker: 'Bake-Off today', head: 'Happy<br><em>Children’s Day</em>', sub: 'The Little Chefs Bake-Off is on today.<br><b>4:30 PM</b> at Bread & Brew.', url },
 ];
+
+// Band Battle feed post (1080 x 1350). Render with: bun render.mjs band
+export const bandPost = { scene: 'band', kicker: 'Jinglefest Music', nosponsor: true, head: 'Band<br><em>Battle</em>', sub: '<b>5 bands</b> of 2–5 members.<br><b>Screening 28 November.</b><br>Final at the Christmas Carnival on <b>6 December</b>.', url: 'thejinglefest.com/music' };
