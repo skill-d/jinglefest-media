@@ -1,0 +1,11 @@
+[pattern]
+id = "render-a5"
+name = "Render A5 flyer"
+kind = "atom"
+deliverable = "Rebuilds the Bake-Off A5 flyer PNG and its print PDFs (with and without bleed) in jinglefest-media-kit/07-poster"
+
+[[stage]]
+id = "render-a5"
+kind = "script"
+run = "bash {pattern}/run.sh"
+timeout_s = 900
