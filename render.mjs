@@ -1,7 +1,7 @@
 // Typesets the poster and social posts over the Gemini scenes.
 import { chromium } from 'playwright';
 import { readFileSync } from 'node:fs';
-import { posts, bandPost, PHONES } from './posts.mjs';
+import { posts, bandPost, carnivalPost, PHONES } from './posts.mjs';
 
 const root = new URL('./', import.meta.url).pathname;
 const K = `${root}jinglefest-media-kit/`;
@@ -31,12 +31,12 @@ const qrFor = (url) => { const n = url.endsWith('/music') ? 'band-battle' : url.
 const postHtml = (p, story) => {
   const W = 1080, H = story ? 1920 : 1350;
   const art = `file://${root}art/${p.scene}-${story ? '9x16' : '4x5'}.png`;
-    const qr = `<div class="qr"><div>${qrFor(p.url)}</div><span>Scan me</span></div>`;
+    const qr = `<div class="qr"${p.qrTop ? ' style="bottom:auto;top:120px"' : ''}><div>${qrFor(p.url)}</div><span>Scan me</span></div>`;
   const offer = p.offer ? `<div class=offer><p><s>${p.offer.was}</s> <b>${p.offer.now}</b></p><span>${p.offer.line}</span></div>` : '';
   const foot = `<div class="foot"><div class="ft"><span class="shout url">${p.url}</span><span class="ph"><b>Call</b> ${PHONES}</span></div>${story ? qr : ''}</div>`;
   return `<!doctype html><meta charset=utf-8><style>${base}
   body{width:${W}px;height:${H}px}
-  .bg{position:absolute;left:0;top:-14px;width:100%;height:calc(100% + 14px);object-fit:cover;transform-origin:50% 0;scale:${story ? 1.2 : 1.09}}
+  .bg{position:absolute;left:0;top:-14px;width:100%;height:calc(100% + 14px);object-fit:cover;transform-origin:50% 0;scale:${story ? 1.2 : p.scale || 1.09}}
   .stack{position:absolute;left:58px;right:58px;top:${story ? 240 : 44}px;display:flex;flex-direction:column;gap:${story ? 26 : 16}px;align-items:flex-start}
   .logo{font-size:${story ? 64 : 56}px;margin-bottom:${story ? 12 : 4}px;transform-origin:left}
   .kick{font-family:Anton;text-transform:uppercase;letter-spacing:.04em;background:${C.ink};color:${C.gold};font-size:${story ? 40 : 34}px;padding:.14em .6em;border-radius:9px}
@@ -154,6 +154,7 @@ const a5 = async () => {
 
 // `bun render.mjs band-html <out.html>` writes the Band Battle page's HTML and exits (used by the render-check atom).
 if (only === 'band-html') { (await import('node:fs')).writeFileSync(process.argv[3], postHtml(bandPost, false)); process.exit(0); }
+if (only === 'carnival-html') { (await import('node:fs')).writeFileSync(process.argv[3], postHtml(carnivalPost, false)); process.exit(0); }
 const b = await chromium.launch();
 const shot = async (html, w, h, scale, path, pdf) => {
   const ctx = await b.newContext({ viewport: { width: w, height: h }, deviceScaleFactor: scale });
@@ -170,6 +171,7 @@ const shot = async (html, w, h, scale, path, pdf) => {
 if (only === 'a5') { await a5(); console.log('a5'); await b.close(); process.exit(0); }
 if (!only || only === 'poster') { await shot(posterHtml(), 1280, 1600, 2, `${K}07-poster/little-chefs-bake-off-poster.png`, `${K}07-poster/little-chefs-bake-off-poster.pdf`); console.log('poster'); }
 if (only === 'band') { console.log('band-battle feed', await shot(postHtml(bandPost, false), 1080, 1350, 1, `${K}08-socials/feed-4x5/band-battle-band.png`)); await b.close(); process.exit(0); }
+if (only === 'carnival') { console.log('carnival feed', await shot(postHtml(carnivalPost, false), 1080, 1350, 1, `${K}08-socials/feed-4x5/christmas-carnival-save-the-date.png`)); await b.close(); process.exit(0); }
 if (only !== 'poster') for (const p of posts) {
   if (only && String(p.day) !== only) continue;
   const n = `day-${String(p.day).padStart(2, '0')}-${p.date.replace(' ', '').toLowerCase()}-${p.scene}`;

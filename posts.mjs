@@ -19,3 +19,6 @@ export const posts = [
 
 // Band Battle feed post (1080 x 1350). Render with: bun render.mjs band
 export const bandPost = { scene: 'band', kicker: 'Band Battle', nosponsor: true, head: 'Band<br><em>Battle</em>', sub: '<b>5 bands</b> of 2–5 members.<br><b>Screening 28 November.</b><br>Final at the Christmas Carnival on <b>6 December</b>.', url: 'thejinglefest.com/music' };
+
+// Christmas Carnival save-the-date feed post (1080 x 1350). Date only: venue and time aren't confirmed. Render with: bun render.mjs carnival
+export const carnivalPost = { scene: 'carnival', kicker: 'Save the date', nosponsor: true, scale: 1.03, qrTop: true, head: 'Christmas<br><em>Carnival</em>', sub: '<b>Sunday 6 December 2026</b><br>Stalls and the <b>Band Battle final</b> are part of it.', url: 'thejinglefest.com' };
