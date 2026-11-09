@@ -1,0 +1,11 @@
+[pattern]
+id = "render-poster"
+name = "Render poster"
+kind = "atom"
+deliverable = "Rebuilds the Bake-Off poster PNG and PDF in jinglefest-media-kit/07-poster"
+
+[[stage]]
+id = "render-poster"
+kind = "script"
+run = "bash {pattern}/run.sh"
+timeout_s = 900
