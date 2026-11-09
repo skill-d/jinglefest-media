@@ -13,5 +13,6 @@ Start with **JINGLEFEST-BRAND-GUIDE.pdf**.
 | 07-poster | Little Chefs Bake-Off poster (PNG and PDF) |
 | 08-socials | 10 days of posts, feed and story, plus captions |
 | 09-qr-codes | QR codes for each page |
+| 10-website | The website's icons and the pictures shown when a page link is shared |
 
 The Bread & Brew logo here is a small crop from the old poster. Ask Bread & Brew for the original file before printing large.
