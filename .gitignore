@@ -3,3 +3,4 @@ out/
 .tmp-page.html
 .DS_Store
 .env
+.tmp-band.html

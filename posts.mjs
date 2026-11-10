@@ -17,8 +17,10 @@ export const posts = [
   { day: 10, date: '14 Nov', scene: 'today', kicker: 'Bake-Off today', head: 'Happy<br><em>Children’s Day</em>', sub: 'The Little Chefs Bake-Off is on today.<br><b>4:30 PM</b> at Bread & Brew.', url },
 ];
 
-// Band Battle feed post (1080 x 1350). Render with: bun render.mjs band
+// Band Battle posts, feed (1080 x 1350) and story (1080 x 1920). Words from the /music page. Render all with: bun render.mjs band
 export const bandPost = { scene: 'band', kicker: 'Band Battle', nosponsor: true, head: 'Band<br><em>Battle</em>', sub: '<b>5 bands</b> of 2–5 members.<br><b>Screening 28 November.</b><br>Final at the Christmas Carnival on <b>6 December</b>.', url: 'thejinglefest.com/music' };
+export const bandJoinPost = { file: 'band-battle-got-a-band', scene: 'rehearsal', kicker: 'Band Battle', nosponsor: true, head: 'Got a<br><em>band?</em>', sub: '<b>College bands</b> of 2–5 members.<br><b>Christmas songs only.</b><br>₹350 a person + ₹550 a band. Dinner included.', url: 'thejinglefest.com/music' };
+export const bandPrizePost = { file: 'band-battle-prize', scene: 'stage', kicker: 'Band Battle', nosponsor: true, head: 'Play for<br><em>the prize</em>', sub: 'A <b>cash prize</b> + <b>dine-in coupons</b>.<br>The winner is picked by <b>public vote</b>.', cards: [['Screening', '28 November'], ['Final', '6 December']], url: 'thejinglefest.com/music' };
 
 // Christmas Carnival save-the-date feed post (1080 x 1350). Date only: venue and time aren't confirmed. Render with: bun render.mjs carnival
 export const carnivalPost = { scene: 'carnival', kicker: 'Save the date', nosponsor: true, scale: 1.03, qrTop: true, head: 'Christmas<br><em>Carnival</em>', sub: '<b>Sunday 6 December 2026</b><br>Stalls and the <b>Band Battle final</b> are part of it.', url: 'thejinglefest.com' };

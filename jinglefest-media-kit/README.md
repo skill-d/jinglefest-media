@@ -11,8 +11,9 @@ Start with **JINGLEFEST-BRAND-GUIDE.pdf**.
 | 05-stickers | Starbursts and festive stickers (SVG) |
 | 06-templates | Layout guides and the Gemini prompts |
 | 07-poster | Little Chefs Bake-Off poster (PNG and PDF) |
-| 08-socials | 10 days of Bake-Off posts, feed and story, the Band Battle feed post (`feed-4x5/band-battle-band.png`), the Christmas Carnival save-the-date post (`feed-4x5/christmas-carnival-save-the-date.png`), plus captions |
+| 08-socials | 10 days of Bake-Off posts, feed and story, three Band Battle posts in feed and story (`band-battle-*.png`), the Christmas Carnival save-the-date post (`feed-4x5/christmas-carnival-save-the-date.png`), plus captions |
 | 09-qr-codes | QR codes for each page |
 | 10-website | The website's icons and the pictures shown when a page link is shared |
+| 11-band-battle | Band Battle building blocks: lockups, fact badges, music stickers, stage backgrounds and a band cut-out |
 
 The Bread & Brew logo here is a small crop from the old poster. Ask Bread & Brew for the original file before printing large.

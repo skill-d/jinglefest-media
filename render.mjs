@@ -1,7 +1,7 @@
 // Typesets the poster and social posts over the Gemini scenes.
 import { chromium } from 'playwright';
 import { readFileSync } from 'node:fs';
-import { posts, bandPost, carnivalPost, PHONES } from './posts.mjs';
+import { posts, bandPost, bandJoinPost, bandPrizePost, carnivalPost, PHONES } from './posts.mjs';
 
 const root = new URL('./', import.meta.url).pathname;
 const K = `${root}jinglefest-media-kit/`;
@@ -174,7 +174,12 @@ const shot = async (html, w, h, scale, path, pdf) => {
 };
 if (only === 'a5') { await a5(); console.log('a5'); await b.close(); process.exit(0); }
 if (!only || only === 'poster') { await shot(posterHtml(), 1280, 1600, 2, `${K}07-poster/little-chefs-bake-off-poster.png`, `${K}07-poster/little-chefs-bake-off-poster.pdf`); console.log('poster'); }
-if (only === 'band') { console.log('band-battle feed', await shot(postHtml(bandPost, false), 1080, 1350, 1, `${K}08-socials/feed-4x5/band-battle-band.png`)); await b.close(); process.exit(0); }
+if (only === 'band') {
+  for (const p of [{ ...bandPost, file: 'band-battle-band' }, bandJoinPost, bandPrizePost]) {
+    console.log(p.file, 'feed', await shot(postHtml(p, false), 1080, 1350, 1, `${K}08-socials/feed-4x5/${p.file}.png`), 'story', await shot(postHtml(p, true), 1080, 1920, 1, `${K}08-socials/story-9x16/${p.file}.png`));
+  }
+  await b.close(); process.exit(0);
+}
 if (only === 'carnival') { console.log('carnival feed', await shot(postHtml(carnivalPost, false), 1080, 1350, 1, `${K}08-socials/feed-4x5/christmas-carnival-save-the-date.png`)); await b.close(); process.exit(0); }
 if (only !== 'poster') for (const p of posts) {
   if (only && String(p.day) !== only) continue;

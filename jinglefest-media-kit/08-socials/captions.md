@@ -57,3 +57,13 @@ Happy Children's Day! The Little Chefs Bake-Off is on today at 4:30 PM at Bread 
 Band Battle is coming to Jinglefest! 5 bands of 2–5 members. Screening on 28 November, then the final at the Christmas Carnival on 6 December.
 Register: thejinglefest.com/music
 #Jinglefest #BandBattle #ChristmasCarnival #LiveMusic
+
+**Band Battle: Got a band?** (`band-battle-got-a-band.png`, feed and story)
+College bands, this one's for you. Bring 2–5 members and your best Christmas songs. ₹350 a person + ₹550 a band, and dinner is on us both days. Only 5 band spots.
+Register: thejinglefest.com/music
+#Jinglefest #BandBattle #CollegeBands #ChristmasSongs
+
+**Band Battle: the prize** (`band-battle-prize.png`, feed and story)
+Play for a cash prize plus dine-in coupons. Screening on 28 November, then the final at the Christmas Carnival on 6 December, where the public vote picks the winner.
+Register: thejinglefest.com/music
+#Jinglefest #BandBattle #ChristmasCarnival #LiveMusic

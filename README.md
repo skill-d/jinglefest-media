@@ -4,7 +4,8 @@ Posters, flyers, pamphlets and social posts for Jinglefest (thejinglefest.com). 
 
 ```bash
 bun gen.mjs gemini <scene>                                    # make or remake an illustration (or: grok)
-bun render.mjs [poster|a5|<day>]                              # rebuild the Bake-Off poster, A5 flyer, posts
+bun render.mjs [poster|a5|<day>|band|carnival]                # rebuild the poster, A5 flyer, posts
+bun band.mjs                                                  # rebuild the Band Battle building blocks
 bun shot.mjs templates/<name>.html 1080 1350 out/<name>.jpg   # render any new piece
 ```
 
@@ -87,7 +88,7 @@ Put finished files in the right `jinglefest-media-kit/` folder (`07-poster`, `08
 
 | What | Where | Notes |
 |---|---|---|
-| Raw AI illustrations (PNG, full size) | `art/<scene>-4x5.png`, `art/<scene>-9x16.png` | Scenes: bakers, band, carnival, cookies, dough, finals, gift, judged, kit, lastcall, share, stage, stalls, today. Top ~58% left empty for words |
+| Raw AI illustrations (PNG, full size) | `art/<scene>-4x5.png`, `art/<scene>-9x16.png` | Scenes: bakers, band, carnival, cookies, dough, finals, gift, judged, kit, lastcall, rehearsal, share, stage, stalls, today. Top ~58% left empty for words |
 | Poster kids cut-out | `art/poster-kids.png` | Transparent. From `art/poster-4x5.png` via `cutout.mjs` |
 | Scenes as JPG (shareable) | `04-backgrounds/scenes-feed-4x5/`, `scenes-story-9x16/` | Same scenes, smaller |
 | Plain sunbursts | `04-backgrounds/sunbursts/sunburst-{red,gold,pink,mint,pine,night}-{square,feed,story,wide}-*.jpg` | Or draw them in CSS: `repeating-conic-gradient` (see `posterHtml`) |
@@ -99,7 +100,13 @@ Put finished files in the right `jinglefest-media-kit/` folder (`07-poster`, `08
 | Bake-Off poster | `07-poster/little-chefs-bake-off-poster.{png,pdf}` | `bun render.mjs poster` |
 | Bake-Off A5 flyer | `07-poster/little-chefs-bake-off-a5{.png,-print.pdf,-print-with-bleed.pdf}` | `bun render.mjs a5`. RGB only, so check with the print shop if they need CMYK |
 | 10-day Bake-Off posts | `08-socials/feed-4x5/`, `story-9x16/`, `captions.md` | Words in `posts.mjs`. `bun render.mjs <day>`. Days 1–4 show the early bird price, which has ended |
-| Band Battle feed post | `08-socials/feed-4x5/band-battle-band.png` | 1080 × 1350, words in `bandPost` in `posts.mjs`. `bun render.mjs band` |
+| Band Battle posts | `08-socials/feed-4x5/band-battle-{band,got-a-band,prize}.png`, same names in `story-9x16/` | Feed 1080 × 1350 and story 1080 × 1920. Words in `bandPost`, `bandJoinPost`, `bandPrizePost` in `posts.mjs`. `bun render.mjs band` |
+| Band Battle lockups | `11-band-battle/lockups/{band-battle-stacked,band-battle-wide,jinglefest-band-battle,band-battle-tagline}.png` | Transparent PNG, 2x. Built by `band.mjs` |
+| Band Battle fact badges | `11-band-battle/badges/*.png` | Transparent coupons and bursts, one fact each: screening, final, up to 5, Christmas songs, college bands, cash prize, public vote, dinner, fee, register link, plus "Register now", "Only 5 bands" and "Christmas songs only" bursts |
+| Music stickers | `11-band-battle/stickers/{amp,drum,headphones,keys,notes,pick}.{svg,png}` | Same style as `05-stickers` (which also has guitar and mic) |
+| Stage backgrounds | `11-band-battle/backgrounds/stage-{square,feed,story,wide}-*.jpg` | Night stage, coloured beams, fairy lights. No words. Drawn in CSS in `band.mjs` |
+| Band cut-out | `11-band-battle/cutouts/band.png` (also `art/band-cutout.png`) | The four players on a stage strip, transparent above. Cut from `art/band-4x5.png`. Sits best on the stage backgrounds |
+| Band Battle starter | `templates/band-battle.html` | A feed post built only from the blocks above. Copy it for new band pieces |
 | Christmas Carnival save-the-date post | `08-socials/feed-4x5/christmas-carnival-save-the-date.png` | 1080 × 1350, date only (venue and time not confirmed), words in `carnivalPost` in `posts.mjs`. Scene `art/carnival-4x5.png`. `bun render.mjs carnival` |
 | Starter template | `templates/starter.html` | Fonts, colours, logo, coupon, QR, footer |
 | Website icons | `10-website/favicon.svg`, `apple-touch-icon.png` (180 × 180) | Copies of the live site's icons |
@@ -128,7 +135,7 @@ Checked against the website on 9 November 2026. If the website changes, update t
 - **Phones (posters and social images only):** +91 80988 41307 / +91 9176040644
 - **Little Chefs Bake-Off:** 14 November 2026, 4:30–6:30 PM, at Bread & Brew, Thailavaram Bus Stop, GST Road, Potheri. Ages 8–12 (2 decorated cookies) and 13–16 (1 cookie + 1 brownie or cake). Only 20 slots. Fee ₹749 (the ₹674 early bird ended on 8 November). Flour, sugar, butter, chocolate and salt provided. Bring your own tins and baking equipment. Judged on taste, decoration and creativity. One winner per age group gets a stall on carnival day, sponsored by Bread & Brew. Every child gets a gift bag. Made possible by Bread & Brew. Register at thejinglefest.com/kids/baking.
 - **Christmas Carnival:** Sunday 6 December 2026. Venue and times aren't confirmed yet, so don't print them.
-- **Band Battle:** 5 bands of 2–5 members. ₹350 a person + ₹550 a band. Screening 28 November, final at the carnival on 6 December. Register at thejinglefest.com/music.
+- **Band Battle:** an intercollegiate music competition for college bands of 2–5 members. Christmas songs only. 5 band spots. ₹350 a person + ₹550 a band, and dinner is included on both days. Screening 28 November (5 bands), then 3 bands play the final at the carnival on 6 December. The winner is picked by public vote on the Jinglefest page and wins a cash prize plus dine-in coupons (the amount isn't public, so don't print one). Register at thejinglefest.com/music.
 - **Stalls:** 5 × 10 ft, 5 stalls available. Apply at thejinglefest.com/stalls. The price isn't confirmed yet.
 - **2025:** 483 visitors, 12 stalls, 5 communities.
 
